@@ -13,12 +13,10 @@ export default class WeatherInfo extends Component{
 
     componentDidMount() {
         this.weatherapi.getCurrentWeather("Lviv");
+        this.weatherapi.getWeeklyWeather("Lviv");
     }
 
     render() {
-
-
-
         return (
 
             <React.Fragment>
