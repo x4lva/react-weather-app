@@ -1,28 +1,22 @@
 import React, {Component} from "react";
 import "./weather-info.css";
 import WeatherService from "../../services/WeatherService"
+import WeatherList from "../wather-list";
+import WeatherHeader from "../weather-header";
+import WeatherControl from "../waether-control/weather-control";
 
 export default class WeatherInfo extends Component{
 
-    weatherapi = new WeatherService();
-
-    state = {
-        weather_info: null
-    }
-
-
-    componentDidMount() {
-        this.weatherapi.getCurrentWeather("Lviv");
-        this.weatherapi.getWeeklyWeather("Lviv");
-    }
-
     render() {
+
+        const { type, icon }  = this.props.weatherinfo
+
         return (
-
-            <React.Fragment>
-                <h1>qdad</h1>
-            </React.Fragment>
-
+            <div className="d-flex flex-column weather-info">
+                <WeatherHeader type={type} icon={icon}/>
+                <WeatherControl/>
+                <WeatherList/>
+            </div>
         );
     }
 }

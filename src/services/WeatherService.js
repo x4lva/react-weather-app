@@ -15,7 +15,7 @@ export default class WeatherService{
 
     getCurrentWeather = async (city) => {
         const res = await this.getResource(`/weather?q=${city}`);
-        return this._weatherInfoTransform(res);
+        return this._currentWeatherTransform(res);
     }
 
     getWeeklyWeather = async (city) => {
@@ -26,9 +26,11 @@ export default class WeatherService{
         return res;
     }
 
-    _weatherInfoTransform(weather_info){
+    _currentWeatherTransform(weather_info){
         return {
             city: weather_info.name,
+            icon: weather_info.weather[0].icon,
+            type: weather_info.weather[0].main,
             country: weather_info.sys.country,
             temperature: weather_info.main.temp,
             temperature_min: weather_info.main.temp_min,
