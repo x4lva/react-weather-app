@@ -26,6 +26,25 @@ export default class WeatherService{
         return res;
     }
 
+
+    getWeatherIcon = (weather) => {
+        switch (weather){
+            case "Clear":
+                return(<i className="fas fa-sun"/>);
+                break
+            case "Snow":
+                return(<i className="far fa-snowflake"></i>);
+                break
+            case "Clouds":
+                return(<i className="fas fa-cloud-sun"></i>);
+                break
+            case "Rain":
+                return(<i className="fas fa-cloud-showers-heavy"></i>);
+                break
+        }
+
+    }
+
     _currentWeatherTransform(weather_info){
         return {
             city: weather_info.name,
@@ -47,13 +66,18 @@ export default class WeatherService{
     _weeklyWeatherTransform(weather_info){
         return {
             date: weather_info.dt,
+            icon:weather_info.weather[0].main,
             humidity: weather_info.humidity,
             pressure: weather_info.pressure,
             temperature: weather_info.temp.day,
             temperature_min: weather_info.temp.min,
             temperature_max: weather_info.temp.max,
             wind_speed: weather_info.wind_speed,
-            wind_direction: weather_info.wind_deg
+            wind_direction: weather_info.wind_deg,
+            sunset: weather_info.sunset,
+            sunrise: weather_info.sunrise,
+            feels_like: weather_info.feels_like.day,
+            uvi: weather_info.uvi
         }
     }
 

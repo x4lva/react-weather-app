@@ -1,0 +1,18 @@
+.weather-content-current-list-item{
+    width: 32%;
+    min-height: 100px;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.weather-content-current-list-item-wind-direction{
+    width: 40px;
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
