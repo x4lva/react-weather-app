@@ -9,7 +9,7 @@ export default class CityService {
         }
 
         const data = await res.json();
-        return this._cityImageTransform(data)
+        return this._cityImageTransform(data);
     }
 
 
