@@ -7,20 +7,34 @@ import "./app.css";
 
 class App extends Component {
 
-    state = {
-        weather_info: [],
-        current: localStorage.getItem('current') || 0,
-        metric:  localStorage.getItem('metric') || "c",
-        weatherListLoading: true
-    }
-
     weatherapi = new WeatherService();
 
+    state = {
+        weather_info: [],
+        current: localStorage.getItem('current') || parseInt(new Date().getTime() / 1000).toFixed(0),
+        metric:  localStorage.getItem('metric') || "c",
+        weatherListLoading: true,
+        city: localStorage.getItem('city') || "Lviv",
+        hourly: []
+    }
+
     componentDidMount() {
-        this.weatherapi.getWeeklyWeather("Lviv").then((data) => {
+        this.updateCity(this.state.city)
+    }
+
+    updateCity(city){
+        this.setState({
+            weatherListLoading: true
+        })
+        this.weatherapi.getWeeklyWeather(city).then((data) => {
             this.setState({
                 weather_info: data,
                 weatherListLoading: false
+            })
+        })
+        this.weatherapi.getHourlyWeather(city).then((data) => {
+            this.setState({
+                hourly: data
             })
         })
     }
@@ -30,7 +44,7 @@ class App extends Component {
             case "c":
                 return Math.round(data - 273)
                 break
-            case "f":
+            case "k":
                 return Math.round(data)
                 break
         }
@@ -50,16 +64,29 @@ class App extends Component {
         localStorage.setItem('current', date)
     }
 
+    onCityChange(city){
+        this.updateCity(city)
+        this.setState({
+            city: city
+        })
+        localStorage.setItem('city', city)
+    }
+
     render() {
         return (
-            <div className="container-fluid d-flex justify-content-between min-vh-100">
-                <WeatherInfo currentweatherinfo={this.state.weather_info}/>
+            <div className="d-flex min-vh-100 position-relative">
+                <WeatherInfo onCityChange={this.onCityChange.bind(this)}
+                             currentweatherinfo={this.state.weather_info}
+                             hourlyWeather={this.state.hourly}/>
 
                 <WeatherContent weatherListLoading={this.state.weatherListLoading}
                                 currentmetric={this.state.metric}
                                 rendertemperature={this.renderTemperature.bind(this)}
-                                onmetricchange={this.setMetric.bind(this)} ondaychange={this.setCurrent.bind(this)}
-                                currentweather={this.state.current} weatherinfo={this.state.weather_info}/>
+                                onmetricchange={this.setMetric.bind(this)}
+                                ondaychange={this.setCurrent.bind(this)}
+                                currentweather={this.state.current}
+                                city={this.state.city}
+                                weatherinfo={this.state.weather_info}/>
             </div>
         );
     }

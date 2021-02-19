@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./weather-current-info.css"
+import CityError from "../city-error/city-error";
 
 export default class WeatherCurrentInfo extends Component{
 
@@ -10,17 +11,23 @@ export default class WeatherCurrentInfo extends Component{
     }
 
     renderUviIndex(uvi){
-
-
         return {
             color: `rgb(${uvi*28},0,0)`
         }
     }
 
+    renderDay(unix) {
+        const date = new Date(unix * 1000).toLocaleString().split(',')[0].split('.')
+
+        return `${date[0]}.${date[1]}`
+    }
+
     render() {
 
         const {rendertemperature} = this.props
-        const renderWeatherInfo = this.props.weatherInfo.find(el => el.date==this.props.currentWeather) || ""
+        let renderWeatherInfo = this.props.weatherInfo.find(el => this.renderDay(el.date) === this.renderDay(this.props.currentWeather)) || ""
+
+        if (this.props.weatherInfo[0].status === "error") return (<CityError/>)
 
         return(
             <div className="weather-content-current-list w-100 d-flex flex-wrap justify-content-between">

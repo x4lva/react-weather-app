@@ -1,6 +1,11 @@
 .weather-content {
-    width: 77%;
+    width: 78%;
     background: #F6F6F8;
+    margin-left: 22%;
+}
+
+::-webkit-scrollbar{
+    width: 0;
 }
 
 .active-type::after {

@@ -2,3 +2,11 @@
     width: 22%;
     background: #fff;
 }
+.weather-chart-axis ul{
+    list-style: none;
+    padding: 0;
+}
+.weather-chart-axis-item {
+    font-size: 13px;
+    font-weight: 700;
+}

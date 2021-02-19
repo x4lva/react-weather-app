@@ -1,0 +1,13 @@
+.weather-find-button{
+    background: black !important;
+    color: #fff !important;
+    outline: none;
+}
+
+.weather-find-button:focus{
+    box-shadow: none !important;
+}
+
+.weather-find-button:hover {
+    background: #1e2125 !important;
+}

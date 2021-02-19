@@ -3,6 +3,7 @@ import "./weather-content.css"
 import WeatherList from "../weather-list";
 import WeatherLoading from "../weather-loading";
 import WeatherCurrentInfo from "../weather-current-info/weather-current-info";
+import WeatherHeader from "../weather-header/weather-header";
 
 export default class WeatherContent extends Component {
 
@@ -20,7 +21,7 @@ export default class WeatherContent extends Component {
 
         const metricButtons = [
             {name: "°C", label: "c"},
-            {name: "°F", label: "f"}
+            {name: "°K", label: "k"}
         ]
 
         const renderButtons = metricButtons.map((el) => {
@@ -59,8 +60,9 @@ export default class WeatherContent extends Component {
         }
 
         return (
-            <div className="weather-content d-flex flex-column p-5 pt-4">
-                <div className="weather-content-navigation d-flex justify-content-between w-100">
+            <div className="weather-content d-flex flex-column p-5 pt-4 pb-0">
+                <WeatherHeader city={this.props.city}/>
+                <div className="weather-content-navigation d-flex justify-content-between w-100 mt-3">
                     <div className="weather-content-navigation-type d-flex">
                         <div
                             className="weather-content-navigation-type-item me-2 fw-bolder position-relative">

@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import "./weather-list.css";
 import WeatherService from "../../services/WeatherService";
+import CityError from "../city-error/city-error";
 
 export default class WeatherList extends Component {
-
 
     weatherapi = new WeatherService()
 
@@ -18,9 +18,11 @@ export default class WeatherList extends Component {
         const {weathercurrent, ondaychange, rendertemperature} = this.props
 
         const weather_list = this.props.weatherinfo.map((el) => {
+            if (el.status === "error") return <CityError/>
+
             let classname = "weather-list-item shadow d-flex flex-column align-items-center justify-content-center";
 
-            if (el.date == weathercurrent) classname += " weather-list-current"
+            if (this.renderDay(weathercurrent) === this.renderDay(el.date)) classname += " weather-list-current"
 
             return (
                 <div key={el.date}
@@ -34,7 +36,7 @@ export default class WeatherList extends Component {
 
 
         return (
-            <div className="weather-list d-flex justify-content-between mt-3">
+            <div className="weather-list d-flex flex-sm-wrap justify-content-between mt-3">
                 {weather_list}
             </div>
         );

@@ -1,18 +1,28 @@
 import React, {Component} from "react";
+import "./weather-header.css"
+import CityService from "../../services/CityService";
 
 export default class WeatherHeader extends Component{
 
+    cityimage = new CityService()
+
+
+
     render() {
 
-        const icon_url = `http://openweathermap.org/img/wn/${this.props.icon}@2x.png`;
+        const image = {
+            backgroundImage: 'url()'
+        }
+
+        this.cityimage.getCityImage(this.props.city).then( (data) => {
+                    document.getElementById('weather-header-img').setAttribute("style", `background-image: url(${data.image})`)
+                }
+            )
 
         return(
-            <div className="d-flex align-items-center flex-column">
-                <h1>{this.props.type}</h1>
-                <div className="weather-info-icon">
-                    <img src={icon_url} alt="Weather Icon"/>
-                </div>
+            <div id="weather-header-img" className="weather-header container-fluid bg-dark rounded-2 shadow" style={image}>
+                <div className="weather-header-title">{this.props.city}</div>
             </div>
-        );
+        )
     }
 }
