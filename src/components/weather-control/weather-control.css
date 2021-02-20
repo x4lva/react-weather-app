@@ -1,10 +1,10 @@
-.weather-find-button{
+.weather-find-button {
     background: black !important;
     color: #fff !important;
     outline: none;
 }
 
-.weather-find-button:focus{
+.weather-find-button:focus {
     box-shadow: none !important;
 }
 

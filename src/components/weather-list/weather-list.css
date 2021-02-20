@@ -1,4 +1,4 @@
-.weather-list-item{
+.weather-list-item {
     width: 11%;
     min-height: 100px;
     background: #fff;
@@ -8,14 +8,14 @@
     flex-direction: column;
     min-height: 125px;
 }
-.weather-content-list-item-icon{
+.weather-content-list-item-icon {
     font-size: 25px;
 }
-.weather-list-current{
+.weather-list-current {
     background: black;
     color: white;
 }
-.weather-list-item:hover{
+.weather-list-item:hover {
     cursor: pointer;
 }
 .weather-list-current:hover {

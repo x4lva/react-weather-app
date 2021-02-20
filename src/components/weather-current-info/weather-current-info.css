@@ -1,4 +1,4 @@
-.weather-content-current-list-item{
+.weather-content-current-list-item {
     width: 32%;
     min-height: 100px;
     background: #fff;
@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
 }
-.weather-content-current-list-item-wind-direction{
+.weather-content-current-list-item-wind-direction {
     width: 40px;
     height: 40px;
     border: 2px solid #000;
