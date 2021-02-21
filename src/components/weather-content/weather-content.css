@@ -45,3 +45,6 @@ body .metric-active {
 .weather-content-current-header {
     font-size: 20px;
 }
+.weather-content-navigation-metric-item{
+    transition: .5s;
+}
