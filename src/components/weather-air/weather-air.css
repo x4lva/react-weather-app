@@ -1,0 +1,21 @@
+.carousel-item{
+    background: #000 !important;
+    height: 200px;
+    border-radius: 5px;
+}
+.carousel-caption {
+    position: absolute;
+    right: 16%;
+    left: 16%;
+    color: #fff;
+    text-align: center;
+    display: flex !important;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-bottom: 0 !important;
+
+    bottom: 0rem !important;
+}

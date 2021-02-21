@@ -15,6 +15,9 @@ class App extends Component {
         weatherListLoading: true,
         city: localStorage.getItem("city") || "Lviv",
         hourly: [],
+        air: [],
+        timeZone: 0,
+        airLoading: true
     };
 
     componentDidMount() {
@@ -24,6 +27,7 @@ class App extends Component {
     updateCity(city) {
         this.setState({
             weatherListLoading: true,
+            airLoading: true
         });
         this.weatherapi.getWeeklyWeather(city).then((data) => {
             this.setState({
@@ -34,6 +38,18 @@ class App extends Component {
         this.weatherapi.getHourlyWeather(city).then((data) => {
             this.setState({
                 hourly: data,
+            });
+        });
+        this.weatherapi.getWeatherAir(city).then((data) => {
+            this.setState({
+                air: data,
+                airLoading: false
+            });
+        });
+        this.weatherapi.getCityCoords(city).then((data) => {
+            this.setState({
+                timeZone: data.timezone,
+
             });
         });
     }
@@ -73,9 +89,12 @@ class App extends Component {
         return (
             <div className="d-flex min-vh-100 position-relative">
                 <WeatherInfo
+                    airQuality={this.state.air}
                     onCityChange={this.onCityChange.bind(this)}
                     currentweatherinfo={this.state.weather_info}
                     hourlyWeather={this.state.hourly}
+                    airLoading={this.state.airLoading}
+                    timeZone={this.state.timeZone}
                 />
 
                 <WeatherContent

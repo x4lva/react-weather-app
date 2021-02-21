@@ -19,7 +19,7 @@ export default class WeatherControl extends Component {
 
     render() {
         return (
-            <form className="d-flex p-3" onSubmit={this.onSubmit}>
+            <form className="d-flex" onSubmit={this.onSubmit}>
                 <input
                     value={this.state.city}
                     onChange={this.onLabelChange}

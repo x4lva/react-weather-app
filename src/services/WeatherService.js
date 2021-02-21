@@ -22,6 +22,20 @@ export default class WeatherService {
         return this._currentWeatherTransform(res);
     };
 
+    getWeatherAir = async (city) => {
+        const { lat, lon } = await this.getCityCoords(city);
+
+        if (lat === undefined) return [{ status: "error" }];
+
+        const res = await this.getResource(
+            `/air_pollution/forecast?lat=${lat}&lon=${lon}`
+        ).then((data) => {
+            return this._airQualityTransform(data);
+        });
+
+        return res;
+    };
+
     getWeeklyWeather = async (city) => {
         const { lat, lon } = await this.getCityCoords(city);
 
@@ -68,6 +82,7 @@ export default class WeatherService {
         return {
             lat: weather_info.coord.lat,
             lon: weather_info.coord.lon,
+            timezone: weather_info.timezone
         };
     }
 
@@ -95,5 +110,24 @@ export default class WeatherService {
             date: ("0" + data.getHours()).slice(-2),
             temperature: Math.round((weather_info.temp - 273) * 10) / 10,
         };
+    }
+
+    _airQualityTransform(weather_info) {
+        const data = weather_info.list
+
+        const date = parseInt(new Date().getTime()/1000)
+
+        const currentData = data.find((el) => {
+            if (el.dt - date <= 3600 && el.dt - date > 0) return el.components
+        })
+
+        let res = []
+
+
+        for (let values in currentData.components){
+            res.push({name: values, value: currentData.components[values]})
+        }
+
+        return res
     }
 }
