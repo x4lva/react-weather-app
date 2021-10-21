@@ -1,4 +1,6 @@
-# Implementation of the interface for the weather API
+# React Weather
+
+Implementation of the interface for the weather API
 
 ## Installation
 
