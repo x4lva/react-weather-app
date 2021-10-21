@@ -1,6 +1,6 @@
 # React Weather
 
-Implementation of the interface for the weather API
+Implementation of the interface for the weather API </br>
 [Video Presentation](https://watch.screencastify.com/v/3LPpZBBrIMgzWXvlDYJV)
 
 ## Installation
