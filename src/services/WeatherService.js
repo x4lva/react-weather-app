@@ -1,7 +1,7 @@
 import Parser from "rss-parser";
 
 export default class WeatherService {
-    _base = "http://api.openweathermap.org/data/2.5";
+    _base = "https://api.openweathermap.org/data/2.5";
     _api = "&appid=48b9e43bcf4ceb09bc49daf4ca9d2223";
 
     async getResource(url) {
