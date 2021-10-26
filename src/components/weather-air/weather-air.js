@@ -15,7 +15,7 @@ export default class WeatherAir extends Component{
                 <div key={index} className={className}>
                     <div className="carousel-caption d-none d-md-flex" data-bs-interval="2500">
                         <h5 className="text-white">{parseFloat(el.value).toFixed(4)} μg/m3</h5>
-                        <p className="text-secondary">Сoncentration of {el.name.toUpperCase()}</p>
+                        <p className="text-secondary">Сoncentration of {el.name?.toUpperCase()}</p>
                     </div>
                 </div>
             )

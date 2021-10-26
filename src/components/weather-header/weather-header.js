@@ -11,9 +11,9 @@ export default class WeatherHeader extends Component {
         };
 
         this.cityimage.getCityImage(this.props.city).then((data) => {
-            document
-                .getElementById("weather-header-img")
-                .setAttribute("style", `background-image: url(${data.image})`);
+            const img = document.getElementById("weather-header-img")
+
+            if (img) img.setAttribute("style", `background-image: url(${data.image})`);
         });
 
         return (
